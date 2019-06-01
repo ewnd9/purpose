@@ -1,31 +1,73 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * 
- * Generated with the TypeScript template
- * https://github.com/emin93/react-native-template-typescript
- * 
- * @format
- */
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import * as firebaseOptions from './firebaseWeb.json';
 
-interface Props {}
-export default class App extends Component<Props> {
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+firebase.initializeApp(firebaseOptions);
+
+const firestore = firebase.firestore();
+const itemsCollection = firestore.collection('items');
+
+type Props = {};
+type State = {
+  docs: Array<any> | null;
+  input: string;
+};
+
+export default class App extends Component<Props, State> {
+  state: State = {
+    docs: null,
+    input: '',
+  }
+
+  async componentDidMount() {
+    const result = await itemsCollection.orderBy('updatedAt', 'desc').limit(3).get();
+    this.setState(() => ({
+      docs: result.docs.map(doc => doc.data())
+    }));
+  }
+
+  inPressSubmit = async () => {
+    const id = `item-temp-999`;
+    const now = new Date().toUTCString();
+
+    const doc = {
+      id,
+      text: this.state.input,
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    const itemRef = itemsCollection.doc(id);
+    await itemRef.set(doc);
+
+    this.setState(() => ({
+      input: '',
+    }));
+  };
+
   render() {
+    const {docs, input} = this.state;
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.tsx</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Text style={styles.instructions}>{docs ? `items ${docs.slice(0, 3).map(doc => doc.text).join('\n')}` : `null`}</Text>
+
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={input => this.setState(() => ({input}))}
+          value={input}
+        />
+        <Button
+          onPress={this.inPressSubmit}
+          title="Submit"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       </View>
     );
   }

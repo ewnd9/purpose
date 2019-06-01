@@ -5,11 +5,19 @@
     "start": "echo todo"
   },
   "workspaces": {
-    "packages": ["packages/*"],
-    "nohoist": ["**/react-native", "**/react-native/**"]
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/firebase",
+      "**/firebase/**",
+      "**/react-native",
+      "**/react-native/**"
+    ]
   },
   "dependencies": {
     "@google-cloud/firestore": "^2.1.1",
+    "firebase": "^6.1.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
