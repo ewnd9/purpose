@@ -4,6 +4,9 @@
   "scripts": {
     "start": "echo todo"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "dependencies": {
     "@google-cloud/firestore": "^2.1.1",
     "minimist": "^1.2.0"
