@@ -4,9 +4,10 @@
   "scripts": {
     "start": "echo todo"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/react-native", "**/react-native/**"]
+  },
   "dependencies": {
     "@google-cloud/firestore": "^2.1.1",
     "minimist": "^1.2.0"
