@@ -1,0 +1,25 @@
+.f8 { font-size: .6rem; }
+.bg-whitess { background-color: #fafafa; }
+
+html, body, #root {
+  height: 100%;
+}
+
+.fira-mono {
+  font-size: 0.95rem;
+  font-family: "Fira Code";
+  font-feature-settings: "'liga' 1, 'calt' 1";
+}
+
+.fat-purple-underline {
+  position: relative;
+}
+
+.fat-purple-underline::after {
+  content: '';
+  border-bottom: 2px solid #A463F2;
+  position: absolute;
+  left: 0;
+  bottom: 0%;
+  width: 100%;
+}
