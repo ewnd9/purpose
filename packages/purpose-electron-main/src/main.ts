@@ -1,4 +1,4 @@
-'use strict';
+import './config';
 
 import path from 'path';
 import execa from 'execa';
