@@ -1,6 +1,6 @@
-export const INCREMENT_LAST_ID = "INCREMENT_LAST_ID";
+export const INCREMENT_LAST_ID = 'INCREMENT_LAST_ID';
 export function incrementLastId() {
   return {
-    type: INCREMENT_LAST_ID
+    type: INCREMENT_LAST_ID,
   };
 }

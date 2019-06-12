@@ -2,12 +2,12 @@
 
 import path from 'path';
 import execa from 'execa';
-import { app, ipcMain, globalShortcut, BrowserWindow, Tray } from 'electron';
+import {app, ipcMain, globalShortcut, BrowserWindow, Tray} from 'electron';
 // const { execFileSync } = require('child_process');
 import windowStateKeeper from 'electron-window-state';
 
-import { showNotification, hideNotification } from './notifications/notificationsAwesomeWm';
-import { bus } from './socketServer';
+import {showNotification, hideNotification} from './notifications/notificationsAwesomeWm';
+import {bus} from './socketServer';
 
 let win: BrowserWindow | undefined;
 let icon;
@@ -79,7 +79,7 @@ function getWin() {
 
   const mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
-    defaultHeight: 800
+    defaultHeight: 800,
   });
 
   win = new BrowserWindow({
@@ -88,7 +88,7 @@ function getWin() {
     width: mainWindowState.width,
     height: mainWindowState.height,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
     },
   });
 
@@ -113,7 +113,7 @@ function getWin() {
   win.loadURL(indexHtml);
 
   // if (!isProd) {
-    win.webContents.openDevTools({mode: 'right'});
+  win.webContents.openDevTools({mode: 'right'});
   // }
 
   win.on('minimize', () => {
@@ -135,15 +135,16 @@ function getWin() {
   return win;
 }
 
-ipcMain.on('show-notification', function(event, { text, duration }) {
+ipcMain.on('show-notification', function(event, {text, duration}) {
   devConsole.log('show-notification');
 
-  text = text.replace(/\\/g, '\\\\')
-   .replace(/\$/g, '\\$')
-   .replace(/'/g, "\\'")
-   .replace(/"/g, '\\\"');
+  text = text
+    .replace(/\\/g, '\\\\')
+    .replace(/\$/g, '\\$')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"');
 
-  showNotification({ text, duration });
+  showNotification({text, duration});
 });
 
 ipcMain.on('hide-notification', function() {
@@ -151,11 +152,11 @@ ipcMain.on('hide-notification', function() {
   hideNotification();
 });
 
-ipcMain.on('SEND_QUEUE', (event, { text }) => {
-  showNotification({ text, duration: 1 });
+ipcMain.on('SEND_QUEUE', (event, {text}) => {
+  showNotification({text, duration: 1});
 });
 
-ipcMain.on('SEND_ACTIVITIES_COUNT', (event, { count }) => {
+ipcMain.on('SEND_ACTIVITIES_COUNT', (event, {count}) => {
   const newIconPath = count === 0 ? ICON_PATH : ICON_PATH_BLANK;
 
   if (newIconPath !== iconPath) {
@@ -164,9 +165,9 @@ ipcMain.on('SEND_ACTIVITIES_COUNT', (event, { count }) => {
   }
 });
 
-ipcMain.on('OPEN_PROJECT', async (event, { path }) => {
+ipcMain.on('OPEN_PROJECT', async (event, {path}) => {
   let tag = 1;
-  const res = await execa.shell('wmctrl -l | awk \'{print $2}\' | grep 1 | wc -l');
+  const res = await execa.shell("wmctrl -l | awk '{print $2}' | grep 1 | wc -l");
   const count = +res.stdout;
 
   if (count > 0) {
@@ -177,7 +178,7 @@ ipcMain.on('OPEN_PROJECT', async (event, { path }) => {
   await execa('code', [path.replace('~', process.env.HOME)]);
 });
 
-ipcMain.on('OPEN_PLAN', async (event, { plan }) => {
+ipcMain.on('OPEN_PLAN', async (event, {plan}) => {
   await execa('wmctrl', ['-s', 5]);
   await execa('atom', [`${process.env.HOME}/Dropbox/plan${plan}`]);
 });

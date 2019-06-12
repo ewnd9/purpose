@@ -1,40 +1,40 @@
-export const SET_PROJECT_FOCUS = "SET_PROJECT_FOCUS";
-export const SET_PROJECT_ALWAYS_SHOW = "SET_PROJECT_ALWAYS_SHOW";
-export const SET_PROJECT_PATH = "SET_PROJECT_PATH";
-export const SET_PROJECT_PLAN = "SET_PROJECT_PLAN";
-export const SET_PROJECT_ARCHIVED = "SET_PROJECT_ARCHIVED";
-export function setProjectFocus({ name, focus }) {
+export const SET_PROJECT_FOCUS = 'SET_PROJECT_FOCUS';
+export const SET_PROJECT_ALWAYS_SHOW = 'SET_PROJECT_ALWAYS_SHOW';
+export const SET_PROJECT_PATH = 'SET_PROJECT_PATH';
+export const SET_PROJECT_PLAN = 'SET_PROJECT_PLAN';
+export const SET_PROJECT_ARCHIVED = 'SET_PROJECT_ARCHIVED';
+export function setProjectFocus({name, focus}) {
   return {
     type: SET_PROJECT_FOCUS,
     name,
-    focus
+    focus,
   };
 }
-export function setProjectAlwaysShow({ name, alwaysShow }) {
+export function setProjectAlwaysShow({name, alwaysShow}) {
   return {
     type: SET_PROJECT_ALWAYS_SHOW,
     name,
-    alwaysShow
+    alwaysShow,
   };
 }
-export function setProjectPath({ name, path }) {
+export function setProjectPath({name, path}) {
   return {
     type: SET_PROJECT_PATH,
     name,
-    path
+    path,
   };
 }
-export function setProjectPlan({ name, plan }) {
+export function setProjectPlan({name, plan}) {
   return {
     type: SET_PROJECT_PLAN,
     name,
-    plan
+    plan,
   };
 }
-export function setProjectArchived({ name, archived }) {
+export function setProjectArchived({name, archived}) {
   return {
     type: SET_PROJECT_ARCHIVED,
     name,
-    archived
+    archived,
   };
 }

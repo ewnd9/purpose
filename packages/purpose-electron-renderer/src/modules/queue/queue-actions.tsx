@@ -1,22 +1,22 @@
-export const ADD_QUEUE_ITEM = "ADD_QUEUE_ITEM";
-export const SET_QUEUE_ITEM_ORDER = "SET_QUEUE_ITEM_ORDER";
-export const REMOVE_QUEUE_ITEM = "REMOVE_QUEUE_ITEM";
-export function addQueueItem({ id }) {
+export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
+export const SET_QUEUE_ITEM_ORDER = 'SET_QUEUE_ITEM_ORDER';
+export const REMOVE_QUEUE_ITEM = 'REMOVE_QUEUE_ITEM';
+export function addQueueItem({id}) {
   return {
     type: ADD_QUEUE_ITEM,
-    id
+    id,
   };
 }
-export function setQueueItemOrder({ id, order }) {
+export function setQueueItemOrder({id, order}) {
   return {
     type: SET_QUEUE_ITEM_ORDER,
     id,
-    order
+    order,
   };
 }
-export function removeQueueItem({ id }) {
+export function removeQueueItem({id}) {
   return {
     type: REMOVE_QUEUE_ITEM,
-    id
+    id,
   };
 }

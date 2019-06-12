@@ -1,27 +1,23 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose, withHandlers } from "recompose";
-import {
-  setUiProperty,
-  UI_PROPERTY_ACTIVE_MODAL,
-  MODAL_SCHEDULE
-} from "../../modules/ui/ui-actions";
-import { ScheduleModal } from "./schedule-modal";
+import React from 'react';
+import {connect} from 'react-redux';
+import {compose, withHandlers} from 'recompose';
+import {setUiProperty, UI_PROPERTY_ACTIVE_MODAL, MODAL_SCHEDULE} from '../../modules/ui/ui-actions';
+import {ScheduleModal} from './schedule-modal';
 const enhance = compose(
   connect(
-    ({ ui }) => ({ activeModal: ui.uiProperties[UI_PROPERTY_ACTIVE_MODAL] }),
-    { setUiProperty }
+    ({ui}) => ({activeModal: ui.uiProperties[UI_PROPERTY_ACTIVE_MODAL]}),
+    {setUiProperty},
   ),
   withHandlers({
-    setModalOpened: ({ setUiProperty }) => () => {
+    setModalOpened: ({setUiProperty}) => () => {
       setUiProperty({
         key: UI_PROPERTY_ACTIVE_MODAL,
-        value: null
+        value: null,
       });
-    }
-  })
+    },
+  }),
 );
-const ModalsHolderBase = ({ activeModal, setModalOpened }) => {
+const ModalsHolderBase = ({activeModal, setModalOpened}) => {
   if (!activeModal) {
     return null;
   }
@@ -34,7 +30,7 @@ const ModalsHolderBase = ({ activeModal, setModalOpened }) => {
   return React.createElement(component, {
     modalOpts: activeModal.modalOpts,
     setModalOpened,
-    modalOpened: true
+    modalOpened: true,
   });
 };
 export const ModalsHolder = enhance(ModalsHolderBase);

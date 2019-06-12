@@ -5,12 +5,12 @@ import fs from 'fs';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import App from './components/shell/shell';
 import configureStore from './modules/configure-store';
 
-import { startEventsHandler } from './events';
+import {startEventsHandler} from './events';
 
 const dbPath = 'db.json';
 const devConsole = console;
@@ -24,7 +24,7 @@ store.subscribe(() => {
   });
 });
 
-startEventsHandler({ store });
+startEventsHandler({store});
 render();
 
 function render() {
@@ -32,6 +32,6 @@ function render() {
     <Provider store={store}>
       <App />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 }

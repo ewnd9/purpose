@@ -1,31 +1,26 @@
-import React from "react";
-import { compose, withHandlers } from "recompose";
-import { connect } from "react-redux";
-import { setItemEstimate } from "../../modules/items/items-actions";
-import { withContentEditable2 } from "./content-editable-hoc";
+import React from 'react';
+import {compose, withHandlers} from 'recompose';
+import {connect} from 'react-redux';
+import {setItemEstimate} from '../../modules/items/items-actions';
+import {withContentEditable2} from './content-editable-hoc';
 const enhance = compose(
   connect(
     null,
-    { setItemEstimate }
+    {setItemEstimate},
   ),
   withHandlers({
-    onChange: ({ id, setItemEstimate }) => text => {
+    onChange: ({id, setItemEstimate}) => text => {
       text = text.trim();
       if (text.match(/^[\d\.]+h?$/)) {
-        setItemEstimate({ id, estimate: text });
+        setItemEstimate({id, estimate: text});
       } else {
         alert(`incorrect format ${text}`); // @TODO proper notifications
       }
-    }
+    },
   }),
-  withContentEditable2
+  withContentEditable2,
 );
-export const ItemEstimateFieldBase = ({
-  onTextKeyPress,
-  isEditable,
-  setEditable,
-  estimate
-}) => (
+export const ItemEstimateFieldBase = ({onTextKeyPress, isEditable, setEditable, estimate}) => (
   <span className="f8 underline">
     <span>est:</span>
     <span
@@ -33,8 +28,8 @@ export const ItemEstimateFieldBase = ({
       contentEditable={isEditable}
       onClick={setEditable}
       onKeyDown={onTextKeyPress}
-      style={{ whiteSpace: "pre-wrap" }}
-      dangerouslySetInnerHTML={{ __html: estimate || "no" }}
+      style={{whiteSpace: 'pre-wrap'}}
+      dangerouslySetInnerHTML={{__html: estimate || 'no'}}
     />
   </span>
 );
