@@ -3,7 +3,11 @@
   "private": true,
   "scripts": {
     "start": "echo todo",
+    "electron:start": "cd packages/purpose-electron-main && yarn start",
     "electron:start:dev": "cd packages/purpose-electron-main && yarn start:dev",
+    "electron:build": "run-p electron:*:build",
+    "electron:main:build": "cd packages/purpose-electron-main && yarn build",
+    "electron:renderer:build": "webpack --config packages/purpose-electron-renderer/config/webpack.config.prod.js",
     "electron:build:watch": "run-p electron:*:build:watch",
     "electron:main:build:watch": "cd packages/purpose-electron-main && yarn build:watch",
     "electron:renderer:build:watch": "webpack-dev-server --config packages/purpose-electron-renderer/config/webpack.config.js",

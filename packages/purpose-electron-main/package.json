@@ -4,7 +4,7 @@
   "private": true,
   "main": "dist/main.js",
   "scripts": {
-    "start": "electron ./dist/main.js",
+    "start": "NODE_ENV=production electron ./dist/main.js",
     "start:dev": "yarn start",
     "build": "tsc",
     "build:watch": "tsc -w"
