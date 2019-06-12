@@ -3,3 +3,7 @@ firebaseServiceAccount.json
 firebaseWeb.json
 node_modules
 dist
+packages/purpose-electron-main/public/*
+!packages/purpose-electron-main/public/index.html
+!packages/purpose-electron-main/public/index-dev.html
+!packages/purpose-electron-main/public/img

@@ -1,6 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const rootDir = path.resolve(`${__dirname}/..`);
 
 module.exports = {
@@ -65,7 +63,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin()],
   devServer: {
     public: 'localhost:8080'
   }
