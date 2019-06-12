@@ -15,5 +15,5 @@
     "target": "esnext",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.{ts,tsx}"]
 }

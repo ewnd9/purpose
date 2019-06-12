@@ -6,7 +6,8 @@ import {ItemControlButton} from './item-control-button';
 import {ItemCopyButton} from './item-copy-button';
 import {ItemEstimateField} from './item-estimate-field';
 import {ItemScheduleButton} from './item-schedule-button';
-const ItemBase = ({
+
+export const ItemBase = ({
   item,
   removeItem,
   setItemCompleted,
@@ -65,4 +66,5 @@ const ItemBase = ({
     />
   );
 };
+
 export const Item = withContentEditable(ItemBase);
