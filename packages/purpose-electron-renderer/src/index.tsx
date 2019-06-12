@@ -12,7 +12,7 @@ import configureStore from './modules/configure-store';
 
 import {startEventsHandler} from './events';
 
-const dbPath = 'db.json';
+const dbPath = `${process.env.HOME}/.config/purpose/db.json`; // only Linux for now
 const devConsole = console;
 
 const store = configureStore(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
