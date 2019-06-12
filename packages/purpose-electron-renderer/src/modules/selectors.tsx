@@ -1,23 +1,17 @@
-import flow from "lodash/fp/flow";
-import map from "lodash/fp/map";
-import range from "lodash/fp/range";
-import groupBy from "lodash/fp/groupBy";
-import sum from "lodash/fp/sum";
-import {
-  formatChoresDate,
-  addDays,
-  parseScheduleTime
-} from "../utils/date-utils";
-import { getQueueItems } from "./queue/queue-reducer";
+import flow from 'lodash/fp/flow';
+import map from 'lodash/fp/map';
+import range from 'lodash/fp/range';
+import groupBy from 'lodash/fp/groupBy';
+import sum from 'lodash/fp/sum';
+import {formatChoresDate, addDays, parseScheduleTime} from '../utils/date-utils';
+import {getQueueItems} from './queue/queue-reducer';
 
 export function getRemainingQueueCount(state) {
   const queue = getQueueItems(state);
   return queue.length;
 }
 export function getScheduledItems(state) {
-  const {
-    items,
-  } = state;
+  const {items} = state;
   const currentDate = Date.now(); // legacy
   const groupsBySchedule = groupBy(item => item.schedule)(items);
   const dates = range(0, 6).map(step => {
@@ -25,12 +19,12 @@ export function getScheduledItems(state) {
     const items = groupsBySchedule[date] || [];
     const totalEstimate = flow(
       map(parseScheduleTime),
-      sum
+      sum,
     )(items);
     return {
       date,
       items,
-      totalEstimate
+      totalEstimate,
     };
   });
   return dates;
@@ -47,6 +41,6 @@ export function getNewSessionDialog(state) {
   return {
     nowDate,
     choresDate,
-    isDialogPending: nowDate !== choresDate // @TODO better name
+    isDialogPending: nowDate !== choresDate, // @TODO better name
   };
 }

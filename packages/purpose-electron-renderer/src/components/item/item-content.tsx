@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 export const ItemContent = ({
   isEditable,
   onClick,
   onKeyDown,
-  prefix = "",
+  prefix = '',
   content,
   controlPanel,
   isDragging,
-  provided = {}
+  provided = {},
 }) => (
   <div
     className="pt1 pb1 bb-m b--moon-gray fira-mono"
-    style={{ isDragging }}
+    style={{isDragging}}
     ref={provided.innerRef}
     {...provided.draggableProps}
     {...provided.dragHandleProps}
@@ -23,8 +23,8 @@ export const ItemContent = ({
         contentEditable={isEditable}
         onClick={onClick}
         onKeyDown={onKeyDown}
-        style={{ whiteSpace: "pre-wrap" }}
-        dangerouslySetInnerHTML={{ __html: content.split("\n").join("<br />") }}
+        style={{whiteSpace: 'pre-wrap'}}
+        dangerouslySetInnerHTML={{__html: content.split('\n').join('<br />')}}
       />
     </div>
     {controlPanel || null}

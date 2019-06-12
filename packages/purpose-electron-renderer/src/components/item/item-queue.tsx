@@ -1,11 +1,11 @@
-import React from "react";
-import { formatDateAgo } from "../../utils/date-utils";
-import { withContentEditable } from "./content-editable-hoc";
-import { ItemContent } from "./item-content";
-import { ItemControlButton } from "./item-control-button";
-import { ItemCopyButton } from "./item-copy-button";
-import { ItemEstimateField } from "./item-estimate-field";
-import { ItemScheduleButton } from "./item-schedule-button";
+import React from 'react';
+import {formatDateAgo} from '../../utils/date-utils';
+import {withContentEditable} from './content-editable-hoc';
+import {ItemContent} from './item-content';
+import {ItemControlButton} from './item-control-button';
+import {ItemCopyButton} from './item-copy-button';
+import {ItemEstimateField} from './item-estimate-field';
+import {ItemScheduleButton} from './item-schedule-button';
 const ItemBase = ({
   item,
   index,
@@ -16,7 +16,7 @@ const ItemBase = ({
   isEditable,
   addedAt,
   isDragging,
-  provided
+  provided,
 }) => {
   return (
     <ItemContent
@@ -30,17 +30,12 @@ const ItemBase = ({
       provided={provided}
       controlPanel={
         <div>
-          <ItemControlButton onClick={() => setItemCompleted({ id: item.id })}>
-            complete
-          </ItemControlButton>{" "}
-          <ItemControlButton onClick={() => removeQueueItem({ id: item.id })}>
-            remove
-          </ItemControlButton>{" "}
-          <ItemCopyButton text={item.text} />{" "}
-          <ItemEstimateField id={item.id} estimate={item.estimate} />{" "}
+          <ItemControlButton onClick={() => setItemCompleted({id: item.id})}>complete</ItemControlButton>{' '}
+          <ItemControlButton onClick={() => removeQueueItem({id: item.id})}>remove</ItemControlButton>{' '}
+          <ItemCopyButton text={item.text} /> <ItemEstimateField id={item.id} estimate={item.estimate} />{' '}
           {(item.estimate && (
             <React.Fragment>
-              <ItemScheduleButton id={item.id} schedule={item.schedule} />{" "}
+              <ItemScheduleButton id={item.id} schedule={item.schedule} />{' '}
             </React.Fragment>
           )) ||
             null}

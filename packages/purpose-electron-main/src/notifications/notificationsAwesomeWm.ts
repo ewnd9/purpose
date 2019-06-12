@@ -1,12 +1,12 @@
-import { exec } from 'child_process';
+import {exec} from 'child_process';
 
 // https://awesomewm.org/doc/api/libraries/naughty.html
-export function showNotification({ text, duration }) {
+export function showNotification({text, duration}) {
   text = text.replace(/\n/g, '\\\n');
 
   return runScript(`
     local naughty = require("naughty")
-    my_notification = naughty.notify({ text = "${text}", timeout = ${duration * 60 | 0 /* in s */}, run = function ()
+    my_notification = naughty.notify({ text = "${text}", timeout = ${(duration * 60) | 0 /* in s */}, run = function ()
       naughty.destroy(x)
       -- naughty.notify({ text = "hi" })
     end })

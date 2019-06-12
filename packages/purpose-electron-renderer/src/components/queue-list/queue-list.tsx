@@ -1,27 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose, withHandlers } from "recompose";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { Item } from "../item/item-queue";
-import { HeaderWithScroll } from "../shell/header-with-scroll";
-import { Title } from "../shell/title";
-import { getQueueItems } from "../../modules/queue/queue-reducer";
-import {
-  setQueueItemOrder,
-  removeQueueItem
-} from "../../modules/queue/queue-actions";
-import { setItemCompleted } from "../../modules/items/items-actions";
+import React from 'react';
+import {connect} from 'react-redux';
+import {compose, withHandlers} from 'recompose';
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
+import {Item} from '../item/item-queue';
+import {HeaderWithScroll} from '../shell/header-with-scroll';
+import {Title} from '../shell/title';
+import {getQueueItems} from '../../modules/queue/queue-reducer';
+import {setQueueItemOrder, removeQueueItem} from '../../modules/queue/queue-actions';
+import {setItemCompleted} from '../../modules/items/items-actions';
 const enhance = compose(
   connect(
-    ({ queue, items }) => ({ queueItems: getQueueItems({ queue, items }) }),
-    { removeQueueItem, setItemCompleted, setQueueItemOrder }
+    ({queue, items}) => ({queueItems: getQueueItems({queue, items})}),
+    {removeQueueItem, setItemCompleted, setQueueItemOrder},
   ),
   withHandlers({
-    onDragEnd: ({ queueItems, setQueueItemOrder }) => result => {
-      if (
-        !result.destination ||
-        result.source.index === result.destination.index
-      ) {
+    onDragEnd: ({queueItems, setQueueItemOrder}) => result => {
+      if (!result.destination || result.source.index === result.destination.index) {
         return;
       }
       const destIndex = result.destination.index;
@@ -31,22 +25,16 @@ const enhance = compose(
       } else if (destIndex === queueItems.length - 1) {
         newOrder = queueItems[queueItems.length - 1].order * 2;
       } else {
-        newOrder =
-          (queueItems[destIndex - 1].order + queueItems[destIndex].order) / 2;
+        newOrder = (queueItems[destIndex - 1].order + queueItems[destIndex].order) / 2;
       }
       setQueueItemOrder({
         id: result.draggableId,
-        order: newOrder
+        order: newOrder,
       });
-    }
-  })
+    },
+  }),
 );
-const QueueList = ({
-  queueItems,
-  removeQueueItem,
-  setItemCompleted,
-  onDragEnd
-}) => (
+const QueueList = ({queueItems, removeQueueItem, setItemCompleted, onDragEnd}) => (
   <HeaderWithScroll
     header={<Title>Queue</Title>}
     content={
@@ -58,16 +46,12 @@ const QueueList = ({
                 <div
                   className="pv3 ph1"
                   ref={dropProvided.innerRef}
-                  style={{ isDraggingOver: dropSnapshot.isDraggingOver }}
+                  style={{isDraggingOver: dropSnapshot.isDraggingOver}}
                   {...dropProvided.droppableProps}
                 >
                   <div>
-                    {queueItems.map(({ item, addedAt }, index) => (
-                      <Draggable
-                        key={item.id}
-                        draggableId={item.id}
-                        index={index}
-                      >
+                    {queueItems.map(({item, addedAt}, index) => (
+                      <Draggable key={item.id} draggableId={item.id} index={index}>
                         {(dragProvided, dragSnapshot) => (
                           <div>
                             <Item
