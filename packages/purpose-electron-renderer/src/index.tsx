@@ -1,5 +1,4 @@
-import 'tachyons';
-import './style.css';
+import './styles';
 
 import fs from 'fs';
 
