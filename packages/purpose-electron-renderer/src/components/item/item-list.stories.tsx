@@ -17,7 +17,7 @@ const withReduxProvider = story => <Provider store={store}>{story()}</Provider>;
 const time3hoursAgo = new Date(Date.now() - 1000 * 60 * 3).toISOString();
 const mockItem: ItemType = {
   id: 1,
-  text: 'hello world',
+  text: 'hello world https://github.com/ **block**\n\nnew line',
   isActive: false,
   isBacklog: false,
   isCompleted: false,
