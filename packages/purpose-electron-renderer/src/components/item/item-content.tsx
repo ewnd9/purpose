@@ -1,4 +1,7 @@
 import React from 'react';
+import snarkdown from 'snarkdown';
+import linkify from 'markdown-linkify';
+
 export const ItemContent = ({
   isEditable,
   onClick,
@@ -24,7 +27,9 @@ export const ItemContent = ({
         onClick={onClick}
         onKeyDown={onKeyDown}
         style={{whiteSpace: 'pre-wrap'}}
-        dangerouslySetInnerHTML={{__html: content.split('\n').join('<br />')}}
+        dangerouslySetInnerHTML={{
+          __html: isEditable ? content.split('\n').join('<br />') : snarkdown(linkify(content)),
+        }}
       />
     </div>
     {controlPanel || null}
