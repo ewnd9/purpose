@@ -28,7 +28,7 @@
   "dependencies": {
     "@google-cloud/firestore": "^2.1.1",
     "firebase": "^6.1.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.6"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
